@@ -14,8 +14,8 @@ Fall 2019 Databases Project
  - Design View items page
     - has link to enter auction for items
  - Design Search for Items page
-  - searches by category
-  -links to auction page
+    - searches by category
+    -links to auction page
  - Design Auction page
     - has button to bid on item
     - also has chat where you can add and view chats on the auction
@@ -29,6 +29,9 @@ Fall 2019 Databases Project
  - HOMEPAGE
 
 # COLE'S STUFF
+- CREATE ACCOUNT PAGE
+- SIGN IN PAGE
+- USER HOMEPAGE
 
 # BEN'S STUFF
 
