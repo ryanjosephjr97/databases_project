@@ -4,7 +4,8 @@ Fall 2019 Databases Project
 # STUFF TO DO
  - Design Homepage
     - has links to "Create Account", "Sign in"
- - Design Create Account Page, Sign in Page
+ - Design Create Account Page
+ - Design Sign in Page
  - Design User Home page
     - has links to "Post Item", "View All Items", "Search for Items", "View Messages"
  - Design View Messages webpage
@@ -18,4 +19,17 @@ Fall 2019 Databases Project
  - Design Auction page
     - has button to bid on item
     - also has chat where you can add and view chats on the auction
+    
+# PATRICK'S STUFF
+
+ - AUCTION PAGE 
+ - SEARCH PAGE
+ 
+# RYAN'S STUFF
+ - HOMEPAGE
+
+# COLE'S STUFF
+
+# BEN'S STUFF
+
   
