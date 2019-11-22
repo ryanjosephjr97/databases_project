@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Search Items</title>
+  </head>
+<body>
+  <h1>Searh Items</h1>
+  {% if entries is not defined %}
+    <form action="{{ url_for('search') }}" method="post">
+    Search for Item by Category or Name: <input type="text" name="query">
+    <input type="submit" value="SEARCH">
+    </form>
+  {% else %}
+    {% if entries|length > 0 %}
+        <ul>
+        {% for entry in entries %}
+            <li><b>{{ entry.itemname}}</b> ({{ entry.startprice }})
+            <p>
+            {{ entry.description }}
+            <hr>
+        {% endfor %}
+        </ul>
+    {% else %}
+        No results.<p>
+    {% endif %}
+  {% endif %}
+</body>
+</html>
