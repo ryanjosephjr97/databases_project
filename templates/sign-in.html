@@ -4,17 +4,21 @@
   </head>
 <body>
   <h1>Sign In</h1>
-  {% if user is not defined %}
-    <form action="{{ url_for('sign-in') }}" method="post">
+  {% if credentials == "no" %}
+    <form action="{{ url_for('sign_in') }}" method="post">
     Username: <input type="text" name="username">
     Email: <input type="text" name="email">
+    <input type="hidden" name="credentials" value="yes">    
     <input type="submit" value="Sign In">
     </form>
+  {% elif credentials == "yes" %}
+    Sign in complete! <a href={{url_for('user_home')}}?user={{email}}&name={{name}} >Click here to go to homepage</a>  
   {% else %}
     {% if user|length > 0 %}
       <meta http-equiv="Refresh" content="0; url=./user-home" />
     {% else %}
       <h3>Not a valid username or email. Try again.</h3>
-  {% endif %}
+    {% endif %}
+  {% endif %} 
 </body>
 </html>
