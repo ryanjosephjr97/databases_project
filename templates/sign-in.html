@@ -4,14 +4,17 @@
   </head>
 <body>
   <h1>Sign In</h1>
-  {% if entries is not defined %}
+  {% if user is not defined %}
     <form action="{{ url_for('sign-in') }}" method="post">
     Username: <input type="text" name="username">
     Email: <input type="text" name="email">
     <input type="submit" value="Sign In">
     </form>
   {% else %}
-  <!--redirect here-->
+    {% if user|length > 0 %}
+      <meta http-equiv="Refresh" content="0; url=./user-home" />
+    {% else %}
+      <h3>Not a valid username or email. Try again.</h3>
   {% endif %}
 </body>
 </html>

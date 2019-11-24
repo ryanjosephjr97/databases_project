@@ -46,8 +46,9 @@ def sign-in():
         print(sql_query)
 
         cursor.execute(sql_query)
-        rows = cursor.fetchall()
-        return render_template("search-item.html")
+        user = cursor.fetchall()
+        print(user)
+        return render_template("search-item.html" user=user)
 
 
 @app.route('/user-home')

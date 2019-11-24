@@ -4,7 +4,7 @@
   </head>
 <body>
   <h1>Create Account</h1>
-  {% if entries is not defined %}
+  {% if account is not defined %}
     <form action="{{ url_for('create-account') }}" method="post">
     Username: <input type="text" name="username">
     Email: <input type="text" name="email">
@@ -12,7 +12,6 @@
     </form>
   {% else %}
     <h3>Account Created</h3>
-    <!--validation?-->
   {% endif %}
 </body>
 </html>
