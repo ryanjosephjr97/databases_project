@@ -14,6 +14,16 @@ def homepage():
     return render_template("homepage.html")
 
 
+@app.route('/view-item', methods=['get'])
+def view_item():
+    db = get_db()
+    cursor = db.cursor()
+    sql = "select * from items"
+    cursor.execute(sql)
+    items=cursor.fetchall()
+    return render_template("view-item.html", entries=items)
+
+
 @app.route('/auctions', methods=['get', 'post'])
 def auctions():
     if request.args:
