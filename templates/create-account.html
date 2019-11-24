@@ -4,14 +4,14 @@
   </head>
 <body>
   <h1>Create Account</h1>
-  {% if account is not defined %}
-    <form action="{{ url_for('create-account') }}" method="post">
-    Username: <input type="text" name="username">
-    Email: <input type="text" name="email">
+  {% if account == "notmade" %}
+    <form action="{{ url_for('create_account') }}" method="post">
+    Username: <input type="text" name="username"><br>
+    Email: <input type="text" name="email"><br>
     <input type="Submit" value="submit">
     </form>
   {% else %}
-    <h3>Account Created</h3>
+    <h3>Account Created! Go to <a href={{url_for('sign_in')}} > Sign-In </a> page to sign in</h3>
   {% endif %}
 </body>
 </html>
