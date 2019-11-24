@@ -19,7 +19,7 @@
         {%else%}
             No bids.
         {% endif %}
-        <form action="/auctions?user=bmerrgan5r@auda.org.au&itemid={{request.args.get('itemid')}}&itemname={{request.args.get('itemname')}}&startprice={{request.args.get('startprice')}}" method="post">
+        <form action="/auctions?user={{request.args.get('user')}}&itemid={{request.args.get('itemid')}}&itemname={{request.args.get('itemname')}}&startprice={{request.args.get('startprice')}}" method="post">
         Enter Bid:
         <input type="text" name="bidamount">
         <input type="hidden" name="step" value="add_entry">
@@ -38,7 +38,7 @@
             {% else %}
                 No chats.
         {% endif %}
-        <form action="/auctions?user=bmerrgan5r@auda.org.au&itemid={{request.args.get('itemid')}}&itemname={{request.args.get('itemname')}}&startprice={{request.args.get('startprice')}}" method="post">
+        <form action="/auctions?user={{request.args.get('user')}}&itemid={{request.args.get('itemid')}}&itemname={{request.args.get('itemname')}}&startprice={{request.args.get('startprice')}}" method="post">
         Enter chat: <textarea name="chattext" rows="5" cols="40"></textarea><br>
         <input type="hidden" name="step" value="add_chat">
         <input type="submit" value="Chat">
