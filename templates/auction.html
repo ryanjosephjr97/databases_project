@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Auction for {{request.args.get('itemname')}}</title>
+  </head>
+<body>
+  <h1>Auction #{{auction.auctionid}} for {{request.args.get('itemname')}}</h1>
+  <h3>Start time: {{auction.starttime}}</h3>
+    {% if auction|length > 0 %}
+        <b>{{request.args.get('itemname')}}</b><br>
+         Start Price:({{request.args.get('startprice')}}) <br>
+        {%if bids|length > 0%}
+        <ul>
+        {% for bid in bids %}
+            {{bid.bidder}} (<b>{{bid.bidprice}}</b>)
+            <i>{{bid.bidtime}}</i>
+            <hr>
+        {% endfor %}
+        </ul>
+        {%else%}
+            No bids.
+        {% endif %}
+        <form action="/auctions?user=bmerrgan5r@auda.org.au&itemid={{request.args.get('itemid')}}&itemname={{request.args.get('itemname')}}&startprice={{request.args.get('startprice')}}" method="post">
+        Enter Bid:
+        <input type="text" name="bidamount">
+        <input type="hidden" name="step" value="add_entry">
+        <input type="submit" value="Bid">
+        </form>
+        <h2>Auction end at {{auction.endtime}} for final price of {{fp}}</h2>
+        <h3>Chat</h3>
+        {% if chats|length > 0 %}
+            <ul>
+            {% for chat in chats %}
+            <b>{{chat.chatter}}</b> ({{chat.chattime}}) <br>
+            {{chat.chattext}}
+            <hr>
+            {% endfor %}
+            <ul>
+            {% else %}
+                No chats.
+        {% endif %}
+        <form action="/auctions?user=bmerrgan5r@auda.org.au&itemid={{request.args.get('itemid')}}&itemname={{request.args.get('itemname')}}&startprice={{request.args.get('startprice')}}" method="post">
+        Enter chat: <textarea name="chattext" rows="5" cols="40"></textarea><br>
+        <input type="hidden" name="step" value="add_chat">
+        <input type="submit" value="Chat">
+        </form>
+    {% else %}
+        No Auction Found.
+    {% endif %}
+</body>
+</html>
