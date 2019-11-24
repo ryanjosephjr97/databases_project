@@ -12,6 +12,63 @@ def homepage():
   return render_template("homepage.html")
 
 
+@app.route('/auctions', methods=['get', 'post'])
+def auctions():
+    if request.args:
+        itemid = request.args.get('itemid')
+        db = get_db()
+        cursor = db.cursor()
+        cursor1 = db.cursor()
+        cursor2 = db.cursor()
+        cursor3 = db.cursor()
+        cursor4 = db.cursor()
+        sql_query = "select * from auction where itemselling=" + itemid
+        cursor.execute(sql_query)
+        row = cursor.fetchall()
+        #debug(row)
+        if len(row) > 0:
+            auctionid = row[0][0]
+            debug(auctionid)
+            sql1 = "select * from bid where auctionid=" + str(auctionid)\
+                + " Order by bidprice"
+            #debug(sql1)
+            cursor1.execute(sql1)
+            bids = cursor1.fetchall()
+            finalprice = bids[len(bids)-1][2]
+            sql3 = "select * from chat where auctionid=" + str(auctionid)
+            debug(sql3)
+            cursor3.execute(sql3)
+            chats = cursor3.fetchall()
+            debug(bids)
+            if "step" not in request.form:
+                return render_template("auctions.html", step="no bid", fp=finalprice, auction=row[0], bids=bids, chats=chats)
+            elif request.form["step"] == "add_entry":
+                sql2 = "insert into bid(auctionId, bidder, bidPrice, bidTime) values ("\
+                    + "'" + str(auctionid) + "'," + "'" + request.args.get("user") + "',"\
+                    + "'" + request.form["bidamount"] + "', now())"
+                debug(sql2)
+                cursor2.execute(sql2)
+                db.commit()
+                cursor1.execute(sql1)
+                bids = cursor1.fetchall()
+                finalprice = bids[len(bids)-1][2]
+                return render_template("auctions.html", fp=finalprice, auction=row[0], bids=bids, chats=chats)
+            elif request.form["step"] == "add_chat":
+                sql4 = "insert into chat(chatText, chatTime, chatter, auctionId) values ("\
+                    + "'" + request.form["chattext"] + "', now(), '"\
+                    + request.args.get("user") + "','" + str(auctionid) + "'" + ")"
+                debug(sql4)
+                cursor4.execute(sql4)
+                db.commit()
+                cursor3.execute(sql3)
+                chats = cursor3.fetchall()
+                return render_template("auctions.html", fp=finalprice, auction=row[0], bids=bids, chats=chats)
+        else:
+            return render_template("auctions.html", item=itemid, auction=row)
+    else:
+        return render_template("auctions.html")
+      
+
 @app.route('/create-account' methods=["post"])
 def create-account():
     if "username" not in request.form:
