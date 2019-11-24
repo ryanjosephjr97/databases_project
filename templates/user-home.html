@@ -1,17 +1,18 @@
 <html>
   <head>
-    <title>Home Page</title>
+    <title>Home Page for {{request.args.get('name')}}</title>
   </head>
 <body>
-  <h1>Home Page</h1>
+  <h1>Home Page for {{request.args.get('name')}}</h1>
+  <h2>{{request.args.get('user')}}</h2>
   <br><br>
-  <a href="./post-item.html">Post Item</a>
+  <a href="./post-itemuser={{request.args.get('user')}}">Post Item</a>
   <br>
-  <a href="./view-item.html">View All Items</a>
+  <a href="./view-item?user={{request.args.get('user')}}">View All Items</a>
   <br>
-  <a href="./search-items.html">Search for Items</a>
+  <a href="./search-item?user={{request.args.get('user')}}">Search for Items</a>
   <br>
-  <a href="./messages.html">View Messages</a>
+  <a href="./messages?user={{request.args.get('user')}}">View Messages</a>
   <br>
 </body>
 </html>
