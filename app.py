@@ -109,30 +109,6 @@ def user_home():
   return render_template("user-home.html")
 
 
-@app.route('/random', methods=['get', 'post'])
-def pick_number():
-    if "upperlim" not in request.form:
-        return render_template("random.html")
-    else:
-        upper = int(request.form['upperlim'])
-        n = randint(1, upper + 1)
-        return render_template("random.html", number=n)
-
-
-@app.route("/browse")
-def dump_entries():
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute('select * from users')
-    rows = cursor.fetchall()
-    output = ""
-    for r in rows:
-        debug(str(dict(r)))
-        output += str(dict(r))
-        output += "\n"
-    return "<pre>" + output + "</pre>"
-
-
 @app.route("/search-item", methods=["get", "post"])
 def search():
     if "query" not in request.form:
