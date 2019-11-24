@@ -12,14 +12,42 @@ def homepage():
   return render_template("homepage.html")
 
 
-@app.route('/create-account')
+@app.route('/create-account' methods=["post"])
 def create-account():
-  return render_template("create-account.html")
+    if "username" not in request.form:
+        return render_template("create-account.html")
+    else if "email" not in request.form:
+        return render_template("create-account.html")
+    else:
+        db = get_db()
+        cursor = db.cursor()
+        username = str(request.form["username"])
+        email = str(request.form["email"])
+        cursor.execute("insert into users (email, username) values (%s, %s)",
+                   str(request.form["email"], str(request.form["username"]])
+        db.commit()
+        return render_template("create-account.html")
 
 
 @app.route('/sign-in')
 def sign-in():
-  return render_template("sign-in.html")
+    if "username" not in request.form:
+        return render_template("sign-in.html")
+    else if "email" not in request.form:
+        return render_template("sign-in.html")
+    else:
+        db = get_db()
+        cursor = db.cursor()
+        username = str(request.form["username"])
+        username = str(request.form["email"])
+        sql_query = "select * from users" + \
+            " where username='" + username + "') and " + \
+            "email like '" + email + "'"
+        print(sql_query)
+
+        cursor.execute(sql_query)
+        rows = cursor.fetchall()
+        return render_template("search-item.html")
 
 
 @app.route('/user-home')
