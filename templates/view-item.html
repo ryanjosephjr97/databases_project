@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>View All Items</title>
+  </head>
+<body>
+  <h1>View All Items</h1>
+    {% if entries|length > 0 %}
+        <ul>
+        {% for entry in entries %}
+            <li><b>{{ entry.itemname}}</b> ({{ entry.startprice }}) <br>
+            {{entry.ownedby}} <br>
+            <i>{{entry.catname}}</i>
+            <p>
+            {{ entry.description }} <br>
+            Auction for item number <a href="./auctions?user={{request.args.get('user')}}&itemid={{entry.itemid}}&itemname={{entry.itemname}}&startprice={{entry.startprice}}"> {{entry.itemid}}</a>
+            <hr>
+        {% endfor %}
+        </ul>
+    {% else %}
+        No results.<p>
+    {% endif %}
+</body>
+</html>
